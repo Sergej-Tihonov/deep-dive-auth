@@ -11,9 +11,15 @@
 |
 */
 
+use App\Models\User;
+use Database\Factories\UserFactory;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+
 pest()->extend(Tests\TestCase::class)
- // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
+    ->use(LazilyRefreshDatabase::class)
     ->in('Feature');
+pest()->use(PHPUnit\Framework\TestCase::class)
+    ->in('Unit');
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +71,20 @@ pest()->presets()->custom('lessStrict', function (array $userNamespaces) {
 |
 */
 
-function something()
+function fakeUser(): UserFactory
 {
-    // ..
+    return User::factory();
+}
+
+/*
+|--------------------------------------------------------------------------
+| Helper Functions
+|--------------------------------------------------------------------------
+*/
+
+function truncateTable(string $modelClass): void
+{
+    DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+    DB::table(app($modelClass)->getTable())->truncate();
+    DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 }
