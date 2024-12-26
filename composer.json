@@ -64,6 +64,7 @@
         "ide": "@php artisan ide-helper:models -M",
         "pest": "pest --compact --profile",
         "stan": "phpstan analyse --memory-limit=250M",
+        "stan-clear": "phpstan clear-result-cache",
         "fix": "pint",
         "rec-dry": "rector process --dry-run",
         "rec": "rector process",
