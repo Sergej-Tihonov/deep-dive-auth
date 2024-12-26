@@ -40,10 +40,10 @@ expect()->extend('toBeOne', fn () => $this->toBe(1));
 pest()->presets()->custom('lessStrict', function (array $userNamespaces) {
     $expectations = [];
     foreach ($userNamespaces as $namespace) {
-        $expectations[] = expect($namespace)->classes()->classes()->not->toHaveProtectedMethodsBesides([
+        $expectations[] = expect($namespace)->classes()->not->toHaveProtectedMethodsBesides([
             'casts',
         ]);
-        $expectations[] = expect($namespace)->classes()->classes()->not->toBeAbstract()->ignoring([
+        $expectations[] = expect($namespace)->classes()->not->toBeAbstract()->ignoring([
             'App\Http\Controllers',
         ]);
         $expectations[] = expect($namespace)->toUseStrictTypes();
@@ -56,6 +56,10 @@ pest()->presets()->custom('lessStrict', function (array $userNamespaces) {
     $expectations[] = expect([
         'sleep',
         'usleep',
+        'die',
+        'dd',
+        'dump',
+        'ray',
     ])->not->toBeUsed();
 
     return $expectations;
