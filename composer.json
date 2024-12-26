@@ -14,6 +14,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.3",
+        "driftingly/rector-laravel": "^2.0",
         "fakerphp/faker": "^1.24.1",
         "larastan/larastan": "^3.0.2",
         "laravel/pail": "^1.2.1",
@@ -22,6 +23,7 @@
         "nunomaduro/collision": "^8.5",
         "pestphp/pest": "^3.7.1",
         "pestphp/pest-plugin-laravel": "^3.0",
+        "rector/rector": "^2.0",
         "roave/security-advisories": "dev-latest",
         "spatie/laravel-ray": "^1.39"
     },
@@ -59,18 +61,11 @@
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
         ],
-        "ide": [
-            "@php artisan ide-helper:models -M"
-        ],
-        "pest": [
-            "pest --compact --profile"
-        ],
-        "stan": [
-            "phpstan analyse --memory-limit=250M"
-        ],
-        "fix": [
-            "pint"
-        ],
+        "ide": "@php artisan ide-helper:models -M",
+        "pest": "pest --compact --profile",
+        "stan": "phpstan analyse --memory-limit=250M",
+        "fix": "pint",
+        "ref": "rector process",
         "check": [
             "composer fix",
             "composer stan",
