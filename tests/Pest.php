@@ -30,6 +30,30 @@ expect()->extend('toBeOne', function () {
     return $this->toBe(1);
 });
 
+pest()->presets()->custom('lessStrict', function (array $userNamespaces) {
+    $expectations = [];
+    foreach ($userNamespaces as $namespace) {
+        $expectations[] = expect($namespace)->classes()->classes()->not->toHaveProtectedMethodsBesides([
+            'casts',
+        ]);
+        $expectations[] = expect($namespace)->classes()->classes()->not->toBeAbstract()->ignoring([
+            'App\Http\Controllers',
+        ]);
+        $expectations[] = expect($namespace)->toUseStrictTypes();
+        $expectations[] = expect($namespace)->toUseStrictEquality();
+        $expectations[] = expect($namespace)->classes()->toBeFinal()->ignoring([
+            'App\Http\Controllers',
+        ]);
+    }
+
+    $expectations[] = expect([
+        'sleep',
+        'usleep',
+    ])->not->toBeUsed();
+
+    return $expectations;
+});
+
 /*
 |--------------------------------------------------------------------------
 | Functions
