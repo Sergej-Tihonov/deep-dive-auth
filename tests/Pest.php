@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -10,12 +12,13 @@
 | need to change it using the "pest()" function to bind a different classes or traits.
 |
 */
-
 use App\Models\User;
 use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Illuminate\Support\Facades\DB;
+use Tests\TestCase;
 
-pest()->extend(Tests\TestCase::class)
+pest()->extend(TestCase::class)
     ->use(LazilyRefreshDatabase::class)
     ->in('Feature');
 pest()->use(PHPUnit\Framework\TestCase::class)

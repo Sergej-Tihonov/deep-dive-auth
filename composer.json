@@ -23,7 +23,7 @@
         "nunomaduro/collision": "^8.5",
         "pestphp/pest": "^3.7.1",
         "pestphp/pest-plugin-laravel": "^3.0",
-        "rector/rector": "^2.0",
+        "rector/rector": "^2.0.3",
         "roave/security-advisories": "dev-latest",
         "spatie/laravel-ray": "^1.39"
     },
@@ -65,8 +65,10 @@
         "pest": "pest --compact --profile",
         "stan": "phpstan analyse --memory-limit=250M",
         "fix": "pint",
-        "ref": "rector process",
+        "rec-dry": "rector process --dry-run",
+        "rec": "rector process",
         "check": [
+            "composer rec",
             "composer fix",
             "composer stan",
             "composer pest"

@@ -10,13 +10,14 @@ use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Override;
 
 final class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
-    #[\Override]
+    #[Override]
     public function register(): void
     {
         //
@@ -36,11 +37,7 @@ final class AppServiceProvider extends ServiceProvider
                 return Password::min(8);
             }
 
-            return Password::min(12)
-                ->letters()
-                ->mixedCase()
-                ->numbers()
-                ->symbols();
+            return Password::min(12)->letters()->mixedCase()->numbers()->symbols();
         });
     }
 

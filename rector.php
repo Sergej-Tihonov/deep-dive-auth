@@ -3,21 +3,20 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\Set\ValueObject\LevelSetList;
-use Rector\Set\ValueObject\SetList;
+use Rector\TypeDeclaration\Rector\StmtsAwareInterface\DeclareStrictTypesRector;
 use RectorLaravel\Rector\MethodCall\RedirectRouteToToRouteHelperRector;
 use RectorLaravel\Set\LaravelLevelSetList;
 use RectorLaravel\Set\LaravelSetList;
 
 return RectorConfig::configure()
     ->withPaths([
-        __DIR__ . '/app',
-        __DIR__ . '/config',
-        __DIR__ . '/database',
-        __DIR__ . '/public',
-        __DIR__ . '/resources',
-        __DIR__ . '/routes',
-        __DIR__ . '/tests',
+        // __DIR__ . '/config',
+        // __DIR__.'/public',
+        // __DIR__.'/resources',
+        __DIR__.'/app',
+        __DIR__.'/database',
+        __DIR__.'/routes',
+        __DIR__.'/tests',
     ])
     ->withPreparedSets(
         deadCode: true,
@@ -28,6 +27,7 @@ return RectorConfig::configure()
         strictBooleans: true,
     )
     ->withPhpSets()
+    ->withImportNames()
     ->withSets([
         LaravelLevelSetList::UP_TO_LARAVEL_110,
         LaravelSetList::LARAVEL_CODE_QUALITY,
@@ -38,5 +38,6 @@ return RectorConfig::configure()
         LaravelSetList::LARAVEL_LEGACY_FACTORIES_TO_CLASSES,
     ])
     ->withRules([
-        RedirectRouteToToRouteHelperRector::class
+        DeclareStrictTypesRector::class,
+        RedirectRouteToToRouteHelperRector::class,
     ]);
