@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use Override;
@@ -20,10 +21,24 @@ final class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Model::shouldBeStrict($this->app->isLocal() || $this->app->runningUnitTests());
-        Relation::requireMorphMap($this->app->isLocal() || $this->app->runningUnitTests());
-        $this->registerMorphMap();
+        $this->configureModels();
+        $this->configureValidations();
+        $this->configureViews();
+    }
 
+    private function configureModels(): void
+    {
+        Model::shouldBeStrict();
+
+        Relation::requireMorphMap();
+        Relation::morphMap([
+            'MorphPivot' => MorphPivot::class,
+            'User' => User::class,
+        ]);
+    }
+
+    private function configureValidations(): void
+    {
         Password::defaults(function () {
             if ($this->app->isLocal()) {
                 return Password::min(8);
@@ -33,11 +48,8 @@ final class AppServiceProvider extends ServiceProvider
         });
     }
 
-    private function registerMorphMap(): void
+    private function configureViews(): void
     {
-        Relation::morphMap([
-            'MorphPivot' => MorphPivot::class,
-            'User' => User::class,
-        ]);
+        Blade::anonymousComponentPath(base_path('resources/views/layouts'), 'layout');
     }
 }

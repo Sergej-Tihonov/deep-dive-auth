@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\Transform\Rector\String_\StringToClassConstantRector;
 use Rector\TypeDeclaration\Rector\StmtsAwareInterface\DeclareStrictTypesRector;
 use RectorLaravel\Rector\MethodCall\RedirectRouteToToRouteHelperRector;
 use RectorLaravel\Set\LaravelLevelSetList;
@@ -40,4 +41,7 @@ return RectorConfig::configure()
     ->withRules([
         DeclareStrictTypesRector::class,
         RedirectRouteToToRouteHelperRector::class,
+    ])
+    ->withSkip([
+        StringToClassConstantRector::class,
     ]);
