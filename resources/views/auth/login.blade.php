@@ -34,6 +34,12 @@
         </div>
 
         <div class="mt-4">
+            <a class="underline" href="{{ route('register') }}">
+                Don't have an account?
+            </a>
+        </div>
+
+        <div class="mt-4">
             <button type="submit">Log in</button>
         </div>
     </form>
