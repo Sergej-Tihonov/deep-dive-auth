@@ -7,9 +7,6 @@
             <div class="font-medium text-red-600">{{ __('Whoops! Something went wrong.') }}</div>
 
             <ul class="mt-3 list-disc list-inside text-sm text-red-600">
-                @php
-                    ray($errors);
-                @endphp
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -31,6 +28,12 @@
                 <input type="checkbox" id="remember_me" name="remember" />
                 <span>Remember me</span>
             </label>
+        </div>
+
+        <div class="mt-4">
+            <a class="underline" href="{{ route('password.request') }}">
+                Forgot your password?
+            </a>
         </div>
 
         <div class="mt-4">
