@@ -15,12 +15,12 @@
 
         <div class="mt-4">
             <label for="name">Name</label>
-            <input class="border-2 border-black" id="name" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <input class="border-2 border-black" id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" />
         </div>
 
         <div class="mt-4">
             <label for="email">Email</label>
-            <input class="border-2 border-black" id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <input class="border-2 border-black" id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" />
         </div>
 
         <div class="mt-4">
