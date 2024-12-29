@@ -1,9 +1,16 @@
 <x-layout::base>
-    Home: {{ Auth::user()?->name ?? 'guest' }}
+
+    Profile: {{ Auth::user()?->name ?? 'guest' }}
+
+    @if (session('status'))
+        <div class="mt-4">
+            {{ session('status') }}
+        </div>
+    @endif
 
     <div class="mt-4">
-        <a class="underline" href="{{ route('auth.profile') }}">
-            Edit Profile
+        <a class="underline" href="{{ route('home') }}">
+            Back to home
         </a>
     </div>
 

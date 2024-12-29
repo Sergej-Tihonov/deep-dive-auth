@@ -18,13 +18,11 @@
         </div>
     </form>
 
-    {{--
     <div class="mt-4">
-        <a class="underline" href="{{ route('profile.show') }}">
+        <a class="underline" href="{{ route('auth.profile') }}">
             Edit Profile
         </a>
     </div>
-    --}}
 
     <form method="POST" action="{{ route('logout') }}">
         @csrf
