@@ -1,5 +1,11 @@
 <x-layout::base>
 
+    @if (session('status'))
+        <div class="mb-4">
+            {{ session('status') }}
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('login') }}" class="pl-8">
         @csrf
 
